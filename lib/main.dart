@@ -164,12 +164,14 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       leading: Icon(
         Icons.settings,
+        color: Colors.black,
       ),
       actions: [
         Padding(
           padding: EdgeInsets.only(right: 15),
           child: Icon(
             Icons.mail_outline,
+            color: Colors.black,
           ),
         ),
       ],
