@@ -1,6 +1,3 @@
-# new-instagram
-A redesigned instagram mobile app made with flutter
-
 <h1 align="center">
     New instagram <br/>
     A redesigned instagram mobile app made with flutter
@@ -13,7 +10,7 @@ A redesigned instagram mobile app made with flutter
 <br>
 
 <p align="center">
-  <img alt="App screen" src=".github/screenshot.png" width="300px">
+  <img alt="App screen" src="github/screenshot.png" width="300px">
 </p>
 
 ## 🚀 Tecnologias
