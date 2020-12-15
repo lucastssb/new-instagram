@@ -2,7 +2,7 @@
 A redesigned instagram mobile app made with flutter
 
 <h1 align="center">
-    New instagram
+    New instagram <br/>
     A redesigned instagram mobile app made with flutter
 </h1>
 
