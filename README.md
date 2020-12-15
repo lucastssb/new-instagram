@@ -10,7 +10,7 @@
 <br>
 
 <p align="center">
-  <img alt="App screen" src=".github/screenshot.png" width="350px">
+  <img alt="App screen" src=".github/screeshot.png" width="350px">
 </p>
 
 ## 🚀 Tecnologias
