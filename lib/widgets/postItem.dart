@@ -11,15 +11,26 @@ class PostItem extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
+
+    void handleSelectedPost(BuildContext ctx, Post post) {
+      Navigator.of(ctx).pushNamed(
+        '/post-details',
+        arguments: {
+          'postData' : post,
+        }
+      );
+    }
+
     return SizedBox(
-      width: double.infinity,
       height: 400,
-      //child: Hero(
-        //tag: post.id,
+      child: Hero(
+        tag: 'id-post-${post.id}',
         child: Card(
+          margin: EdgeInsets.only(left: 0 ,right: 0, bottom: 10),
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(30),),
           child: InkWell(
+            onTap: () => handleSelectedPost(context, post),
             child: Container(
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
@@ -140,7 +151,7 @@ class PostItem extends StatelessWidget {
             ),
           ),
         ),
-     // ),
+      ),
     );
   }
 }

@@ -1,18 +1,22 @@
 import 'package:flutter/foundation.dart';
+
+import '../models/comment.dart';
 import '../models/user.dart';
 
 class Post {
-  int id;
+  final int id;
   final User user;
   final int likesAmount;
   final int commentsAmount;
   final String image;
+  final List<Comment> comments;
 
-  Post({
-    this.id,
+  const Post({
+    @required this.id,
     @required this.user,
     @required this.likesAmount,
     @required this.commentsAmount,
     @required this.image,
+    @required this.comments,
   });
 }

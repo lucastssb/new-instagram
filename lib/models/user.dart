@@ -4,7 +4,7 @@ class User {
   final String name;
   final String profileImage;
 
-  User({
+  const User({
     this.name,
     this.profileImage,
   });

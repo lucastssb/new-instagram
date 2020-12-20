@@ -1,10 +1,10 @@
 import 'package:flutter/foundation.dart';
 
-class HistoryIcon {
+class Story {
   final String imageUri;
   final String name;
 
-  HistoryIcon({
+  const Story({
     @required this.imageUri,
     @required this.name,
   });

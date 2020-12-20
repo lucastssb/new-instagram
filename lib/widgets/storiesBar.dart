@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 
-import '../models/historyIcon.dart';
+import '../models/story.dart';
 
 class StoriesBar extends StatefulWidget {
-  final List<HistoryIcon> historyIcons;
+  final List<Story> stories;
 
-  StoriesBar({@required this.historyIcons});
+  StoriesBar({@required this.stories});
   @override
   _StoriesBarState createState() => _StoriesBarState();
 }
@@ -28,7 +28,7 @@ class _StoriesBarState extends State<StoriesBar> {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(30),
                   child: Image.network(
-                    widget.historyIcons[index].imageUri,
+                    widget.stories[index].imageUri,
                     fit: BoxFit.fill,
                   ),
                 ),
@@ -39,12 +39,12 @@ class _StoriesBarState extends State<StoriesBar> {
                     borderRadius: BorderRadius.circular(32),
                     color: Colors.white),
               ),
-              Text(widget.historyIcons[index].name),
+              Text(widget.stories[index].name),
             ],
           );
         },
         scrollDirection: Axis.horizontal,
-        itemCount: widget.historyIcons.length,
+        itemCount: widget.stories.length,
       ),
     );
   }
