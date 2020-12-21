@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
 
-import '../models/story.dart';
+import 'package:new_instagram/models/user.dart';
 
 class StoriesBar extends StatefulWidget {
-  final List<Story> stories;
+  final List<User> users;
 
-  StoriesBar({@required this.stories});
+  StoriesBar({@required this.users});
   @override
   _StoriesBarState createState() => _StoriesBarState();
 }
 
 class _StoriesBarState extends State<StoriesBar> {
-  void _handleStoryPress(BuildContext ctx, List<Story> storiesList) {
+  void _handleStoryPress(BuildContext ctx, User user) {
     Navigator.of(ctx).pushNamed(
       '/stories',
-      arguments: storiesList,
+      arguments: user,
     );
   }
 
@@ -28,18 +27,18 @@ class _StoriesBarState extends State<StoriesBar> {
           return Column(
             children: [
               InkWell(
-                onTap: () => _handleStoryPress(context, widget.stories),
+                onTap: () => _handleStoryPress(context, widget.users[index]),
                 child: Container(
                   width: 70,
                   height: 70,
                   padding: const EdgeInsets.all(1.5),
                   margin: const EdgeInsets.all(5),
                   child: Hero(
-                    tag: widget.stories[index].url,
+                    tag: widget.users[index].id,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(30),
                       child: Image.network(
-                        widget.stories[index].user.profileImageUrl,
+                        widget.users[index].profileImageUrl,
                         fit: BoxFit.fill,
                       ),
                     ),
@@ -52,12 +51,12 @@ class _StoriesBarState extends State<StoriesBar> {
                       color: Colors.white),
                 ),
               ),
-              Text(widget.stories[index].user.name),
+              Text(widget.users[index].name),
             ],
           );
         },
         scrollDirection: Axis.horizontal,
-        itemCount: widget.stories.length,
+        itemCount: widget.users.length,
       ),
     );
   }

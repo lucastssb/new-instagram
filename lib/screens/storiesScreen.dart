@@ -15,17 +15,17 @@ class StoriesScreen extends StatefulWidget {
 class _StoriesScreenState extends State<StoriesScreen> {
   @override
   Widget build(BuildContext context) {
-    final stories = ModalRoute.of(context).settings.arguments as List<Story>;
+    final user = ModalRoute.of(context).settings.arguments as User;
     return Scaffold(
-      body: StoryScreen(stories: stories),
+      body: StoryScreen(user: user),
     );
   }
 }
 
 class StoryScreen extends StatefulWidget {
-  final List<Story> stories;
+  final User user;
 
-  const StoryScreen({@required this.stories});
+  const StoryScreen({@required this.user});
 
   @override
   _StoryScreenState createState() => _StoryScreenState();
@@ -44,7 +44,7 @@ class _StoryScreenState extends State<StoryScreen>
     _pageController = PageController();
     _animController = AnimationController(vsync: this);
 
-    final Story firstStory = widget.stories.first;
+    final Story firstStory = widget.user.stories.first;
     _loadStory(story: firstStory, animateToPage: false);
 
     _animController.addStatusListener((status) {
@@ -52,14 +52,14 @@ class _StoryScreenState extends State<StoryScreen>
         _animController.stop();
         _animController.reset();
         setState(() {
-          if (_currentIndex + 1 < widget.stories.length) {
+          if (_currentIndex + 1 < widget.user.stories.length) {
             _currentIndex += 1;
-            _loadStory(story: widget.stories[_currentIndex]);
+            _loadStory(story: widget.user.stories[_currentIndex]);
           } else {
             // Out of bounds - loop story
             // You can also Navigator.of(context).pop() here
             _currentIndex = 0;
-            _loadStory(story: widget.stories[_currentIndex]);
+            _loadStory(story: widget.user.stories[_currentIndex]);
           }
         });
       }
@@ -76,7 +76,7 @@ class _StoryScreenState extends State<StoryScreen>
 
   @override
   Widget build(BuildContext context) {
-    final Story story = widget.stories[_currentIndex];
+    final Story story = widget.user.stories[_currentIndex];
     return Scaffold(
       backgroundColor: Colors.black,
       body: GestureDetector(
@@ -86,9 +86,9 @@ class _StoryScreenState extends State<StoryScreen>
             PageView.builder(
               controller: _pageController,
               physics: NeverScrollableScrollPhysics(),
-              itemCount: widget.stories.length,
+              itemCount: widget.user.stories.length,
               itemBuilder: (context, i) {
-                final Story story = widget.stories[i];
+                final Story story = widget.user.stories[i];
                 switch (story.media) {
                   case MediaType.image:
                     return CachedNetworkImage(
@@ -119,7 +119,7 @@ class _StoryScreenState extends State<StoryScreen>
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Row(
-                    children: widget.stories
+                    children: widget.user.stories
                         .asMap()
                         .map((i, e) {
                           return MapEntry(
@@ -142,14 +142,14 @@ class _StoryScreenState extends State<StoryScreen>
                     child: Row(
                       children: [
                         Hero(
-                          tag: story.url,
+                          tag: widget.user.id,
                           child: SizedBox(
                             width: 40,
                             height: 40,
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(16),
                               child: Image.network(
-                                story.user.profileImageUrl,
+                                widget.user.profileImageUrl,
                                 fit: BoxFit.fill,
                               ),
                             ),
@@ -158,7 +158,7 @@ class _StoryScreenState extends State<StoryScreen>
                         Padding(
                           padding: const EdgeInsets.only(left: 10),
                           child: Text(
-                            story.user.name,
+                            widget.user.name,
                             style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
@@ -245,19 +245,19 @@ class _StoryScreenState extends State<StoryScreen>
       setState(() {
         if (_currentIndex - 1 >= 0) {
           _currentIndex -= 1;
-          _loadStory(story: widget.stories[_currentIndex]);
+          _loadStory(story: widget.user.stories[_currentIndex]);
         }
       });
     } else if (dx > 2 * screenWidth / 3) {
       setState(() {
-        if (_currentIndex + 1 < widget.stories.length) {
+        if (_currentIndex + 1 < widget.user.stories.length) {
           _currentIndex += 1;
-          _loadStory(story: widget.stories[_currentIndex]);
+          _loadStory(story: widget.user.stories[_currentIndex]);
         } else {
           // Out of bounds - loop story
           // You can also Navigator.of(context).pop() here
           _currentIndex = 0;
-          _loadStory(story: widget.stories[_currentIndex]);
+          _loadStory(story: widget.user.stories[_currentIndex]);
         }
       });
     } else {

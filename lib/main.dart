@@ -34,15 +34,14 @@ class MyApp extends StatelessWidget {
       ),
       home: MyHomePage(),
       routes: {
-        '/post-details' : (ctx) => PostDetailsScreen(),
-        '/stories' : (ctx) => StoriesScreen(),
+        '/post-details': (ctx) => PostDetailsScreen(),
+        '/stories': (ctx) => StoriesScreen(),
       },
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -77,27 +76,30 @@ class _MyHomePageState extends State<MyHomePage> {
       elevation: 0,
       centerTitle: true,
     );
-    
+
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       appBar: appBar,
       body: Column(
         children: [
           Container(
-            child: StoriesBar(stories: DUMMY_STORIES),
+            child: StoriesBar(users: DUMMY_USERS),
             height: (mediaQuery.size.height -
                     appBar.preferredSize.height -
                     mediaQuery.padding.top) *
-                0.15,
+                0.17,
           ),
           Container(
             height: (mediaQuery.size.height -
                     appBar.preferredSize.height -
                     mediaQuery.padding.top) *
-                0.85,
-           margin: const EdgeInsets.only(left: 5, right: 5),
+                0.83,
+            margin: const EdgeInsets.only(left: 5, right: 5),
             child: ClipRRect(
-              borderRadius: BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(30),),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(30),
+                topRight: Radius.circular(30),
+              ),
               child: PostList(posts: DUMMY_POSTS),
             ),
           ),

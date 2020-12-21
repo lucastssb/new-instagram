@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
-import '../widgets/postItemDetails.dart';
+import 'package:new_instagram/models/user.dart';
+import 'package:new_instagram/widgets/postItemDetails.dart';
 
 import '../models/post.dart';
+
+import '../dummyData.dart';
 
 class PostDetailsScreen extends StatefulWidget {
   @override
@@ -11,6 +13,7 @@ class PostDetailsScreen extends StatefulWidget {
 }
 
 class _PostDetailsScreenState extends State<PostDetailsScreen> {
+  final List<User> users = DUMMY_USERS;
   @override
   Widget build(BuildContext context) {
     final routeArguments =
@@ -60,12 +63,16 @@ class _PostDetailsScreenState extends State<PostDetailsScreen> {
                     leading: ClipRRect(
                       borderRadius: BorderRadius.circular(20),
                       child: Image.network(
-                        post.user.profileImageUrl,
+                        users
+                            .firstWhere((user) => user.id == post.userId)
+                            .profileImageUrl,
                         fit: BoxFit.fill,
                         width: 45,
                       ),
                     ),
-                    title: Text(post.user.name),
+                    title: Text(
+                      users.firstWhere((user) => user.id == post.userId).name,
+                    ),
                     subtitle: Text(
                       post.comments[index].content.toString(),
                     ),
@@ -98,7 +105,9 @@ class _PostDetailsScreenState extends State<PostDetailsScreen> {
                     leading: ClipRRect(
                       borderRadius: BorderRadius.circular(20),
                       child: Image.network(
-                        post.user.profileImageUrl,
+                        users
+                            .firstWhere((user) => user.id == post.userId)
+                            .profileImageUrl,
                         fit: BoxFit.fill,
                         width: 45,
                       ),

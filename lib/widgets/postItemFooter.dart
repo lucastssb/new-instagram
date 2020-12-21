@@ -1,6 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:new_instagram/models/user.dart';
+import '../dummyData.dart';
 import '../models/post.dart';
 
 class PostItemFooter extends StatelessWidget {
@@ -11,6 +13,9 @@ class PostItemFooter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<User> users = DUMMY_USERS;
+    
+
     return Column(
       children: [
         Row(
@@ -104,7 +109,7 @@ class PostItemFooter extends StatelessWidget {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(16),
                                 child: Image.network(
-                                  post.user.profileImageUrl,
+                                  users.firstWhere((user) => user.id == post.userId).profileImageUrl,
                                   fit: BoxFit.fill,
                                 ),
                               ),
@@ -125,7 +130,7 @@ class PostItemFooter extends StatelessWidget {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(16),
                                 child: Image.network(
-                                  post.user.profileImageUrl,
+                                  users.firstWhere((user) => user.id == post.userId).profileImageUrl,
                                   fit: BoxFit.fill,
                                 ),
                               ),
@@ -145,7 +150,7 @@ class PostItemFooter extends StatelessWidget {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(16),
                                 child: Image.network(
-                                  post.user.profileImageUrl,
+                                  users.firstWhere((user) => user.id == post.userId).profileImageUrl,
                                   fit: BoxFit.fill,
                                 ),
                               ),

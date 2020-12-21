@@ -1,15 +1,20 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:new_instagram/models/user.dart';
 
+import '../dummyData.dart';
 import '../widgets/postItemFooter.dart';
 import '../models/post.dart';
 
 class PostItemDetails extends StatelessWidget {
   final Post post;
+  final List<User> users = DUMMY_USERS;
 
   PostItemDetails({
     @required this.post,
   });
+
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -42,7 +47,7 @@ class PostItemDetails extends StatelessWidget {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(16),
                         child: Image.network(
-                          post.user.profileImageUrl,
+                          users.firstWhere((user) => user.id == post.userId).profileImageUrl,
                           fit: BoxFit.fill,
                         ),
                       ),
@@ -50,7 +55,7 @@ class PostItemDetails extends StatelessWidget {
                     Container(
                       margin: const EdgeInsets.only(left: 10),
                       child: Text(
-                        post.user.name,
+                        users.firstWhere((user) => user.id == post.userId).name,
                         style: const TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,

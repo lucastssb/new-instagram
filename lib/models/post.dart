@@ -5,7 +5,7 @@ import '../models/user.dart';
 
 class Post {
   final int id;
-  final User user;
+  final int userId;
   final int likesAmount;
   final int commentsAmount;
   final String image;
@@ -13,7 +13,7 @@ class Post {
 
   const Post({
     @required this.id,
-    @required this.user,
+    @required this.userId,
     @required this.likesAmount,
     @required this.commentsAmount,
     @required this.image,
