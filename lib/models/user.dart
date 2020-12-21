@@ -2,10 +2,10 @@
 
 class User {
   final String name;
-  final String profileImage;
+  final String profileImageUrl;
 
   const User({
     this.name,
-    this.profileImage,
+    this.profileImageUrl,
   });
 }

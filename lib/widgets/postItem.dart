@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import '../models/post.dart';
+import 'postItemFooter.dart';
 
 class PostItem extends StatelessWidget {
   final Post post;
@@ -11,43 +12,50 @@ class PostItem extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-
     void handleSelectedPost(BuildContext ctx, Post post) {
-      Navigator.of(ctx).pushNamed(
-        '/post-details',
-        arguments: {
-          'postData' : post,
-        }
-      );
+      Navigator.of(ctx).pushNamed('/post-details', arguments: {
+        'postData': post,
+      });
     }
 
     return SizedBox(
       height: 400,
       child: Hero(
         tag: 'id-post-${post.id}',
-        child: Card(
-          margin: EdgeInsets.only(left: 0 ,right: 0, bottom: 10),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30),),
-          child: InkWell(
-            onTap: () => handleSelectedPost(context, post),
-            child: Container(
-              padding: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: NetworkImage(post.image),
+        child: SizedBox(
+          height: 400,
+          child: Card(
+            margin: EdgeInsets.only(left: 0, right: 0, bottom: 10),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30),
+            ),
+            child: InkWell(
+              onTap: () => handleSelectedPost(context, post),
+              child: Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: NetworkImage(post.image),
+                  ),
+                  borderRadius: BorderRadius.circular(30),
                 ),
-                borderRadius: BorderRadius.circular(30),
-              ),
-              child: Stack(
-                children: [
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: Row(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Row(
                       children: [
-                        CircleAvatar(
-                          backgroundImage: NetworkImage(post.user.profileImage),
+                        SizedBox(
+                          width: 40,
+                          height: 40,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(16),
+                            child: Image.network(
+                              post.user.profileImageUrl,
+                              fit: BoxFit.fill,
+                            ),
+                          ),
                         ),
                         Container(
                           margin: const EdgeInsets.only(left: 10),
@@ -61,92 +69,9 @@ class PostItem extends StatelessWidget {
                         ),
                       ],
                     ),
-                  ),
-                  Align(
-                    alignment: Alignment.bottomLeft,
-                    child: Row(
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(20),
-                          child: BackdropFilter(
-                            filter: ImageFilter.blur(
-                              sigmaX: 5.0,
-                              sigmaY: 5.0,
-                            ),
-                            child: Container(
-                              alignment: Alignment.center,
-                              width: 90.0,
-                              height: 45.0,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  const Icon(Icons.favorite,
-                                      color: Colors.red, size: 30),
-                                  Text(
-                                    post.likesAmount.toString() + 'k',
-                                    style: const TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        ClipRect(
-                          child: Container(
-                            alignment: Alignment.center,
-                            width: 250,
-                            height: 45.0,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Container(
-                                  alignment: Alignment.center,
-                                  width: 120.0,
-                                  height: 45.0,
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      const Icon(
-                                        Icons.comment,
-                                        color: Colors.white,
-                                        size: 30,
-                                      ),
-                                      Text(
-                                        post.commentsAmount.toString(),
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      const Icon(
-                                        Icons.send,
-                                        color: Colors.white,
-                                        size: 30,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                const Icon(
-                                  Icons.bookmark,
-                                  color: Colors.white,
-                                  size: 30,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+                    PostItemFooter(post: post, showDescription: false),
+                  ],
+                ),
               ),
             ),
           ),

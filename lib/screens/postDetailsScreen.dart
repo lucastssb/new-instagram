@@ -27,6 +27,7 @@ class _PostDetailsScreenState extends State<PostDetailsScreen> {
       ),
       actions: [
         IconButton(
+          onPressed: () {},
           icon: Icon(
             Icons.more_horiz,
             color: Colors.black,
@@ -59,7 +60,7 @@ class _PostDetailsScreenState extends State<PostDetailsScreen> {
                     leading: ClipRRect(
                       borderRadius: BorderRadius.circular(20),
                       child: Image.network(
-                        post.user.profileImage,
+                        post.user.profileImageUrl,
                         fit: BoxFit.fill,
                         width: 45,
                       ),
@@ -97,7 +98,7 @@ class _PostDetailsScreenState extends State<PostDetailsScreen> {
                     leading: ClipRRect(
                       borderRadius: BorderRadius.circular(20),
                       child: Image.network(
-                        post.user.profileImage,
+                        post.user.profileImageUrl,
                         fit: BoxFit.fill,
                         width: 45,
                       ),
@@ -109,6 +110,7 @@ class _PostDetailsScreenState extends State<PostDetailsScreen> {
                       ),
                     ),
                     trailing: IconButton(
+                      onPressed: () {},
                       icon: Icon(Icons.send, color: Colors.black),
                     ),
                   ),

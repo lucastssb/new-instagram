@@ -5,8 +5,10 @@ import '../models/post.dart';
 
 class PostItemFooter extends StatelessWidget {
   final Post post;
+  final bool showDescription;
 
-  PostItemFooter(this.post);
+  PostItemFooter({@required this.post, @required this.showDescription});
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -75,100 +77,102 @@ class PostItemFooter extends StatelessWidget {
             ),
           ],
         ),
-        Container(
-          margin: EdgeInsets.only(top: 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(
-                width: 90,
-                height: 40,
-                child: Stack(
+        showDescription
+            ? Container(
+                margin: EdgeInsets.only(top: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Positioned(
-                      width: 40,
+                    SizedBox(
+                      width: 90,
                       height: 40,
-                      left: 50,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(17),
-                          border: Border.all(
-                            width: 2,
-                            color: Colors.white,
+                      child: Stack(
+                        children: [
+                          Positioned(
+                            width: 40,
+                            height: 40,
+                            left: 50,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(17),
+                                border: Border.all(
+                                  width: 2,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(16),
+                                child: Image.network(
+                                  post.user.profileImageUrl,
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(16),
-                          child: Image.network(
-                            post.user.profileImage,
-                            fit: BoxFit.fill,
+                          Positioned(
+                            width: 40,
+                            height: 40,
+                            left: 25,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(17),
+                                border: Border.all(
+                                  width: 2,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(16),
+                                child: Image.network(
+                                  post.user.profileImageUrl,
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
+                          Positioned(
+                            width: 40,
+                            height: 40,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(17),
+                                border: Border.all(
+                                  width: 2,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(16),
+                                child: Image.network(
+                                  post.user.profileImageUrl,
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                    Positioned(
-                      width: 40,
-                      height: 40,
-                      left: 25,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(17),
-                          border: Border.all(
-                            width: 2,
-                            color: Colors.white,
-                          ),
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(16),
-                          child: Image.network(
-                            post.user.profileImage,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
+                    Text(
+                      'I really like this picture...',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Positioned(
-                      width: 40,
-                      height: 40,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(17),
-                          border: Border.all(
-                            width: 2,
-                            color: Colors.white,
-                          ),
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(16),
-                          child: Image.network(
-                            post.user.profileImage,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
+                    RaisedButton(
+                      onPressed: () {},
+                      child: Text('More'),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
                       ),
+                      color: Colors.white,
                     ),
                   ],
                 ),
-              ),
-              Text(
-                'I really like this picture...',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              RaisedButton(
-                onPressed: () {},
-                child: Text('More'),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                color: Colors.white,
-              ),
-            ],
-          ),
-        ),
+              )
+            : Container(),
       ],
     );
   }

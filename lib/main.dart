@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:new_instagram/screens/storiesScreen.dart';
 
 import './screens/postDetailsScreen.dart';
 import './widgets/storiesBar.dart';
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
       home: MyHomePage(),
       routes: {
         '/post-details' : (ctx) => PostDetailsScreen(),
+        '/stories' : (ctx) => StoriesScreen(),
       },
     );
   }

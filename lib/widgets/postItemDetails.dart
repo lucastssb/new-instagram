@@ -1,6 +1,6 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
+
 import '../widgets/postItemFooter.dart';
 import '../models/post.dart';
 
@@ -42,7 +42,7 @@ class PostItemDetails extends StatelessWidget {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(16),
                         child: Image.network(
-                          post.user.profileImage,
+                          post.user.profileImageUrl,
                           fit: BoxFit.fill,
                         ),
                       ),
@@ -59,7 +59,7 @@ class PostItemDetails extends StatelessWidget {
                     ),
                   ],
                 ),
-                PostItemFooter(post),
+                PostItemFooter(post: post, showDescription: true),
               ],
             ),
           ),
