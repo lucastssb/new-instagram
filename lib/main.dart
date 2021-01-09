@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:new_instagram/screens/storiesScreen.dart';
 
-import './screens/postDetailsScreen.dart';
-import './widgets/storiesBar.dart';
-import 'widgets/postsList.dart';
+import 'package:new_instagram/screens/postDetailsScreen.dart';
+import 'package:new_instagram/screens/storiesScreen.dart';
+import 'package:new_instagram/widgets/postItem.dart';
+import 'package:new_instagram/widgets/storiesBar.dart';
 
 import './dummyData.dart';
 
@@ -120,24 +120,38 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: LayoutBuilder(
         builder: (context, constraints) {
-          return Column(
-            children: [
-              Container(
-                child: StoriesBar(users: DUMMY_USERS),
-                height: constraints.maxHeight * 0.17,
+          return Container(
+            height: constraints.maxHeight,
+            width: constraints.maxWidth,
+            margin: const EdgeInsets.only(left: 5, right: 5),
+            child: ClipRRect(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(30),
+                topRight: Radius.circular(30),
               ),
-              Container(
-                height: constraints.maxHeight * 0.83,
-                margin: const EdgeInsets.only(left: 5, right: 5),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30),
-                    topRight: Radius.circular(30),
+              child: CustomScrollView(
+                slivers: [
+                  SliverList(
+                    delegate: SliverChildListDelegate(
+                      [
+                        Container(
+                          child: StoriesBar(users: DUMMY_USERS),
+                          height: constraints.maxHeight * 0.17,
+                        ),
+                      ],
+                    ),
                   ),
-                  child: PostList(posts: DUMMY_POSTS),
-                ),
+                  SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      (context, index) {
+                        return PostItem(post: DUMMY_POSTS[index]);
+                      },
+                      childCount: DUMMY_POSTS.length,
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
           );
         },
       ),
