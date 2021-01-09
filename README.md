@@ -4,15 +4,15 @@
 </h1>
 
 <p align="center">
-  <a href="#rocket-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#rocket-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;
 </p>
 
 <br>
 
 <p align="center">
-  <img alt="App screen" src=".github/screen1.gif" width="350px">
-  <img alt="App screen" src=".github/screen2.gif" width="350px">
-  <img alt="App screen" src=".github/screen3.gif" width="350px">
+  <img alt="App screen" src=".github/screen1.gif" width="300px">
+  <img alt="App screen" src=".github/screen2.gif" width="300px">
+  <img alt="App screen" src=".github/screen3.gif" width="300px">
 </p>
 
 ## 🚀 Tecnologias
