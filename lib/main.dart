@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
       title: 'Instagram',
       theme: ThemeData(
         primaryColor: Colors.white,
+        accentColor: Colors.red,
         primaryIconTheme: IconThemeData(
           color: Colors.white,
         ),
@@ -47,9 +48,16 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    final mediaQuery = MediaQuery.of(context);
     final AppBar appBar = AppBar(
       title: SvgPicture.asset(
         'assets/Instagram_logo.svg',
@@ -80,30 +88,58 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       appBar: appBar,
-      body: Column(
-        children: [
-          Container(
-            child: StoriesBar(users: DUMMY_USERS),
-            height: (mediaQuery.size.height -
-                    appBar.preferredSize.height -
-                    mediaQuery.padding.top) *
-                0.17,
+      bottomNavigationBar: BottomNavigationBar(
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home_filled),
+            label: 'Home',
           ),
-          Container(
-            height: (mediaQuery.size.height -
-                    appBar.preferredSize.height -
-                    mediaQuery.padding.top) *
-                0.83,
-            margin: const EdgeInsets.only(left: 5, right: 5),
-            child: ClipRRect(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(30),
-                topRight: Radius.circular(30),
-              ),
-              child: PostList(posts: DUMMY_POSTS),
-            ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: 'Search',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.add),
+            label: 'New post',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite),
+            label: 'Likes',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
           ),
         ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Theme.of(context).accentColor,
+        unselectedItemColor: Colors.black,
+        onTap: _onItemTapped,
+      ),
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          return Column(
+            children: [
+              Container(
+                child: StoriesBar(users: DUMMY_USERS),
+                height: constraints.maxHeight * 0.17,
+              ),
+              Container(
+                height: constraints.maxHeight * 0.83,
+                margin: const EdgeInsets.only(left: 5, right: 5),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30),
+                  ),
+                  child: PostList(posts: DUMMY_POSTS),
+                ),
+              ),
+            ],
+          );
+        },
       ),
     );
   }
