@@ -14,9 +14,9 @@
 <br>
 
 <p align="center">
-  <img alt="App screen" src=".github/screen1.gif" width="280px">
-  <img alt="App screen" src=".github/screen2.gif" width="280px">
-  <img alt="App screen" src=".github/screen3.gif" width="280px">
+  <img alt="App screen" src=".github/screen1.gif" width="250px">
+  <img alt="App screen" src=".github/screen2.gif" width="250px">
+  <img alt="App screen" src=".github/screen3.gif" width="250px">
 </p>
 
 ## 💻 Project
