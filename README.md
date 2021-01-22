@@ -21,7 +21,7 @@
 
 ## 💻 Project
 
-This app is just a project i made to help me to learn about some flutter's features and new widgets like Hero, Animation controller and others. 
+This app is just a project i've made to help me to learn about some flutter's features and new widgets like Hero, Animation controller and others. 
 
 
 ## :rocket: Technologies
@@ -38,7 +38,7 @@ To clone and run this application, you'll need [Git](https://git-scm.com) + [Flu
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/lucastssb/new-instagram
+$ git clone https://github.com/lucastssb/new-instagram.git
 
 # Go into the repository
 $ cd new-instagram/
